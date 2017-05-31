@@ -56,17 +56,19 @@ $(document).ready(function() {
 		roundNum: 0,
 		correctCount:0,
 		wrongCount:0,
+		timeInterval:null,
 		
 		//this function listens for the choices button selections which are created when initializing a new question
 		answerSelection:function(){
 			$(".js-choices").on("click",function(){
+				clearInterval(game.timeInterval);
 				game.answerQuestion(this);
 			});	
 		},
 
 		//this function checks the answer of user selections to questions and shows the results on screen
 		answerQuestion: function(selection){
-			$("#questionBlock").html("")
+			$("#questionBlock").html("");
 			var result =$("<div>");
 			var answer = $("<div>");
 			answer.addClass("answer");
@@ -84,6 +86,35 @@ $(document).ready(function() {
 			this.nextQuestion();
 		},
 
+		//this function shows a countdown timer for each new question and shows answer screen with incorrect result if time expires
+		countdownTimer: function(){
+			var timer = $("<div>");
+			var seconds=10;
+			$("#questionBlock").append(timer);
+			timer.text("00:"+seconds);
+			this.timeInterval=window.setInterval(function(){
+				seconds--;
+				seconds=("0" + seconds).slice(-2);
+				if(seconds>0){
+					timer.text("00:"+seconds);
+				}
+				else{
+					game.timeExpired();
+					clearInterval(game.timeInterval);
+				}	
+			},1000);		
+		},
+
+		//this function shows a wrong answer associated with time expiring and moves to next question
+		timeExpired: function(){
+			$("#questionBlock").html("");
+			var result =$("<div>");
+			result.text("Time Expired. The correct answer was "+this.questionArray[this.roundNum].ans);
+			this.wrongCount++;
+			$("#answerBlock").append(result);
+			this.nextQuestion();
+		},
+
 		//this function sets up the game with a start button
 		initializeGame: function(){
 			var startButton = $("<button>");
@@ -95,11 +126,13 @@ $(document).ready(function() {
 		
 		//this function outputs multiple choice options for each question.
 		newQuestion:function(){
+			this.countdownTimer();
 			$("#startPage").html("");
 			$("#answerBlock").html("");
 			var question = $("<div>");
 			question.addClass("question");
 			question.text(this.questionArray[this.roundNum].Q);
+			$("#questionBlock").append(question);
 			$("#questionBlock").append(question);
 			$("#questionBlock").append($("<button class='js-choices'>").text(this.questionArray[this.roundNum].c1));
 			$("#questionBlock").append($("<button class='js-choices'>").text(this.questionArray[this.roundNum].c2));
