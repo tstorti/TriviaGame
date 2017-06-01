@@ -1,6 +1,61 @@
-.startButton{
-	padding:10px;
+body{
+	background-color:#C57B57;
 }
+.choicesButton{
+	padding:10px;
+	width:200px;
+	margin-left:50px;
+	margin-top:15px;
+	background-color: #9CAFB7;
+	border-radius:5px;
+}
+
+.column{
+	flex-direction:column;
+}
+
+.container {
+	border-radius:10px;
+	width:300px;
+	height:500px;
+	display:flex;
+	margin-left:100px;
+	background-color:#F7DBA7;
+}
+
+.header1{
+	font-size:36px;
+	margin:20px;
+	color: #251605;
+}
+
+.message{
+	font-size:18px;
+	margin:10px;
+	color: #251605;
+}
+
 .resetButton{
 	padding:10px;
+	width:200px;
+	background-color: #9CAFB7;
+	border-radius:5px;
 }
+
+.startButton{
+	margin-top:10px;
+	margin-left:50px;
+	padding:10px;
+	width:200px;
+	background-color: #9CAFB7;
+	border-radius:5px;
+}
+
+.timer{
+	text-align:center;
+	font-size:24px;
+	font-weight:bold;
+	margin:10px;
+	color: #251605;
+}
+

@@ -68,10 +68,11 @@ $(document).ready(function() {
 
 		//this function checks the answer of user selections to questions and shows the results on screen
 		answerQuestion: function(selection){
-			$("#questionBlock").html("");
+			$("#content").html("");
 			var result =$("<div>");
 			var answer = $("<div>");
-			answer.addClass("answer");
+			result.addClass("message");
+			answer.addClass("message");
 			answer.text("You answered "+ $(selection).text());
 			if($(selection).text()===this.questionArray[this.roundNum].ans){
 				result.text("Correct!");
@@ -81,8 +82,8 @@ $(document).ready(function() {
 				result.text("Wrong. The correct answer was "+this.questionArray[this.roundNum].ans);
 				this.wrongCount++;
 			}
-			$("#answerBlock").append(answer);
-			$("#answerBlock").append(result);
+			$("#content").append(answer);
+			$("#content").append(result);
 			this.nextQuestion();
 		},
 
@@ -90,7 +91,8 @@ $(document).ready(function() {
 		countdownTimer: function(){
 			var timer = $("<div>");
 			var seconds=10;
-			$("#questionBlock").append(timer);
+			$("#content").append(timer);
+			timer.addClass("timer");
 			timer.text("00:"+seconds);
 			this.timeInterval=window.setInterval(function(){
 				seconds--;
@@ -107,11 +109,12 @@ $(document).ready(function() {
 
 		//this function shows a wrong answer associated with time expiring and moves to next question
 		timeExpired: function(){
-			$("#questionBlock").html("");
+			$("#content").html("");
 			var result =$("<div>");
+			result.addClass("message");
 			result.text("Time Expired. The correct answer was "+this.questionArray[this.roundNum].ans);
 			this.wrongCount++;
-			$("#answerBlock").append(result);
+			$("#content").append(result);
 			this.nextQuestion();
 		},
 
@@ -121,23 +124,22 @@ $(document).ready(function() {
 			startButton.addClass("startButton");
 			startButton.attr("id","startGame");
 			startButton.text("Start Game");
-			$("#startPage").append(startButton);
+			$("#content").append(startButton);
 		},
 		
 		//this function outputs multiple choice options for each question.
 		newQuestion:function(){
+			$("#content").html("");
 			this.countdownTimer();
-			$("#startPage").html("");
-			$("#answerBlock").html("");
 			var question = $("<div>");
-			question.addClass("question");
+			question.addClass("message");
 			question.text(this.questionArray[this.roundNum].Q);
-			$("#questionBlock").append(question);
-			$("#questionBlock").append(question);
-			$("#questionBlock").append($("<button class='js-choices'>").text(this.questionArray[this.roundNum].c1));
-			$("#questionBlock").append($("<button class='js-choices'>").text(this.questionArray[this.roundNum].c2));
-			$("#questionBlock").append($("<button class='js-choices'>").text(this.questionArray[this.roundNum].c3));
-			$("#questionBlock").append($("<button class='js-choices'>").text(this.questionArray[this.roundNum].c4));	
+			$("#content").append(question);
+			$("#content").append(question);
+			$("#content").append($("<button class='choicesButton js-choices'>").text(this.questionArray[this.roundNum].c1));
+			$("#content").append($("<button class='choicesButton js-choices'>").text(this.questionArray[this.roundNum].c2));
+			$("#content").append($("<button class='choicesButton js-choices'>").text(this.questionArray[this.roundNum].c3));
+			$("#content").append($("<button class='choicesButton js-choices'>").text(this.questionArray[this.roundNum].c4));	
 		},
 		
 		//this function determines if there are any more questions to ask and then moves to the next question or end screen on a timeout.
@@ -151,27 +153,30 @@ $(document).ready(function() {
 	        	else{
 	        		game.endGame();
 	        	}	
-	    	}, 1000);
+	    	}, 3000);
 		},
 		
 		//this function shows the final game screen and has a reset button to restart questions from the beginning.
 		endGame: function(){
 			
-			$("#answerBlock").html("");
+			$("#content").html("");
 			var resetButton = $("<button>");
 			resetButton.addClass("resetButton");
 			resetButton.attr("id","resetGame");
 			resetButton.text("Reset Game");
 			var endGameMessage = $("<div>");
-			endGameMessage.text("Game Over");
+			endGameMessage.addClass("message")
+			endGameMessage.text("Game Over!");
 			var wins = $("<div>");
+			wins.addClass("message");
 			wins.text("Correct Answers: "+ this.correctCount);
 			var losses = $("<div>");
+			losses.addClass("message");
 			losses.text("Wrong Answers: "+this.wrongCount);
-			$("#endPage").append(endGameMessage);
-			$("#endPage").append(wins);
-			$("#endPage").append(losses);
-			$("#endPage").append(resetButton);
+			$("#content").append(endGameMessage);
+			$("#content").append(wins);
+			$("#content").append(losses);
+			$("#content").append(resetButton);
 			$("#resetGame").on("click",function(){
 				game.resetGame();
 			});
@@ -182,7 +187,7 @@ $(document).ready(function() {
 			this.roundNum= 0;
 			this.correctCount=0;
 			this.wrongCount=0;
-			$("#endPage").html("");
+			$("#content").html("");
 			this.newQuestion();
 			this.answerSelection();
 		}
