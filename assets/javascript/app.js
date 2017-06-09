@@ -4,49 +4,49 @@ $(document).ready(function() {
 		
 		questionArray: [
 		{
-			Q: "Name the type of Puppy!",
+			Q: "Name the type of puppy!",
 			ans: "German Shepherd",
 			link: "assets/images/german-shepherd.jpg",
 			choices: ["Boxer", "German Shepherd", "Bernese Mountain Dog", "Labrador"]
 		},
 		{
-			Q: "Name the type of Puppy!",
+			Q: "Name the type of puppy!",
 			ans: "Border Collie",
 			link: "assets/images/border-collie.jpg",
 			choices: ["Border Collie", "Terrier", "Pitbull", "Labrador"]
 		},
 		{
-			Q: "Name the type of Puppy!",
+			Q: "Name the type of puppy!",
 			ans: "Siberian Husky",
 			link: "assets/images/siberian-husky.jpg",
 			choices: ["Alaskan Malamute", "Border Collie", "Siberian Husky", "Labrador"]
 		},
 		{
-			Q: "Name the type of Puppy!",
+			Q: "Name the type of puppy!",
 			ans: "French Bulldog",
 			link: "assets/images/french-bulldog.jpg",
 			choices: ["Boxer", "French Bulldog", "Shih Tzu", "Pug"]
 		},
 		{
-			Q: "Name the type of Puppy!",
+			Q: "Name the type of puppy!",
 			ans: "Pitbull",
 			link: "assets/images/pitbull.jpg",
 			choices: ["Pitbull", "German Shepherd", "Dachshund", "Labrador"]
 		},
 		{
-			Q: "Name the type of Puppy!",
+			Q: "Name the type of puppy!",
 			ans: "Golden Retriever",
 			link: "assets/images/golden-retriever.jpg",
 			choices: ["Golden Retriever", "German Shepherd", "Bernese Mountain Dog", "Labrador"]
 		},
 		{
-			Q: "Name the type of Puppy!",
+			Q: "Name the type of puppy!",
 			ans: "St. Bernard",
 			link: "assets/images/st-bernard.jpg",
 			choices: ["St. Bernard", "German Shepherd", "Poodle", "Bernese Mountain Dog"]
 		},
 		{
-			Q: "Name the type of Puppy!",
+			Q: "Name the type of puppy!",
 			ans: "Shih Tzu",
 			link: "assets/images/shih-tzu.jpg",
 			choices: ["Terrier", "Shih Tzu", "Chihuahua", "Poodle"]
@@ -123,7 +123,7 @@ $(document).ready(function() {
 			$("#content").html("");
 			//create reset button
 			var resetButton = $("<button>");
-			resetButton.addClass("resetButton");
+			resetButton.addClass("gameButton");
 			resetButton.attr("id","resetGame");
 			resetButton.text("Reset Game");
 			//create end game message to notify user game is over
@@ -151,9 +151,13 @@ $(document).ready(function() {
 		//this function sets up the game with a start button
 		initializeGame: function(){
 			var startButton = $("<button>");
-			startButton.addClass("startButton");
+			startButton.addClass("gameButton");
 			startButton.attr("id","startGame");
 			startButton.text("Start Game");
+			var startImage=$("<img>");
+			startImage.addClass("puppyImg")
+			startImage.attr("src", "https://media.giphy.com/media/7L7hN0lga40lG/source.gif");
+			$("#content").append(startImage);
 			$("#content").append(startButton);
 			//listen for user input to begin game
 			$("#startGame").on("click",function(){

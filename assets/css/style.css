@@ -16,6 +16,10 @@ body{
 	border:2px solid #1B263B;
 	color: #0D1B2A;
 }
+.choicesButton:hover{
+	color:#E0E1DD;
+	background-color:#0D1B2A;
+}
 
 .container {
 	width:600px;
@@ -24,6 +28,24 @@ body{
 	margin-left:auto;
 	margin-right:auto;
 	background-color:#415A77;
+}
+
+.gameButton{
+	font-size:18px;
+	display:block;
+	margin-top:20px;
+	margin-left: auto;
+	margin-right:auto;
+	padding:10px;
+	width:250px;
+	background-color: #778DA9;
+	border:2px solid #1B263B;
+	color: #0D1B2A;
+	border-radius:5px;
+}
+.gameButton:hover{
+	color:#E0E1DD;
+	background-color:#0D1B2A;
 }
 
 .header1{
@@ -50,32 +72,6 @@ body{
 	display:block;
 	margin-left: auto;
 	margin-right:auto;
-}
-
-.resetButton{
-	font-size:18px;
-	display:block;
-	margin-left: auto;
-	margin-right:auto;
-	padding:10px;
-	width:250px;
-	background-color: #778DA9;
-	border:2px solid #1B263B;
-	color: #0D1B2A;
-	border-radius:5px;
-}
-
-.startButton{
-	font-size:18px;
-	display:block;
-	margin-left: auto;
-	margin-right:auto;
-	padding:10px;
-	width:250px;
-	background-color: #778DA9;
-	border:2px solid #1B263B;
-	color: #0D1B2A;
-	border-radius:5px;
 }
 
 .timer{
